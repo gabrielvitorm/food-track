@@ -2,14 +2,14 @@ package src.model;
 
 public abstract class Transacao {
 
-    protected int id, data;
+    protected int idTransacao, data;
 
-    public int getId() {
-        return id;
+    public int getIdTransacao() {
+        return idTransacao;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdTransacao(int idTransacao) {
+        this.idTransacao = idTransacao;
     }
 
     public int getData() {

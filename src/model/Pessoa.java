@@ -3,7 +3,7 @@ package src.model;
 public abstract class Pessoa {
 
     protected String nome;
-    protected int numeroTelefone;
+    protected int numeroTelefone, idPessoa;
 
     public void setNome(String nome) {
         this.nome = nome;
