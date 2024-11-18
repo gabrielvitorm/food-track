@@ -5,6 +5,12 @@ public final class Estoque {
     private int qtdProduto, qtdMinima;
     private String produto;
 
+    public Estoque(String produto, int qtdProduto, int qtdMinima){
+        this.produto = produto;
+        this.qtdProduto = qtdProduto;
+        this.qtdMinima = qtdMinima;
+    }
+
     public int getQtdProduto() {
         return qtdProduto;
     }
