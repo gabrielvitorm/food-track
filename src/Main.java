@@ -40,8 +40,6 @@ public class Main {
                 case 3:
                     System.out.println("Digite o nome do cliente:");
                     ((Cliente)cliente).setNome(sc.next());
-                    System.out.println("Digite o Id do cliente:");
-                    ((Cliente)cliente).setId(sc.nextInt());
                     System.out.println("Digite o telefone do cliente");
                     ((Cliente)cliente).setNumeroTelefone(sc.nextLong());
                     cs.cadastrarCliente((Cliente)cliente);

@@ -6,6 +6,8 @@ public final class Funcionario extends Pessoa{
 
     public Cargo cargo;
 
+    public Funcionario(){}
+
     @Override
     public String toString() {
         return "Funcionario{" +
