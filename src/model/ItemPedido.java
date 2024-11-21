@@ -1,18 +1,10 @@
 package src.model;
 
-public class ItemPedido {
-    public class ItemPedido implements Calculavel {
+public class ItemPedido implements Calculavel {
 
         private Produto produto;
         private int quantidade;
         private double subtotal;
-
-
-        public ItemPedido(Produto produto, int quantidade) {
-            this.produto = produto;
-            this.quantidade = quantidade;
-            calcularSubtotal();
-        }
 
         public double calcularValor() {
             calcularSubtotal();
@@ -46,4 +38,9 @@ public class ItemPedido {
         public double getSubtotal() {
             return subtotal;
         }
+
+    @Override
+    public void calcularValorPedido() {
+
     }
+}
