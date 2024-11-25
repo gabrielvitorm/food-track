@@ -6,7 +6,7 @@ public class EstoqueService {
 
     private Estoque estoque;
 
-    public EstoqueService(Estoque estoque) {
+    public EstoqueService() {
         this.estoque = estoque;
     }
 

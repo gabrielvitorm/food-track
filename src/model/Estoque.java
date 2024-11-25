@@ -13,6 +13,9 @@ public class Estoque {
         this.estoqueMinimo = new HashMap<>();
     }
 
+    public Estoque() {
+    }
+
     public Map<String, Integer> getEstoqueAtual() {
         return estoqueAtual;
     }
