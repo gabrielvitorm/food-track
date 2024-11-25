@@ -1,64 +1,69 @@
 package src;
 
-import src.model.Estoque;
+import src.model.*;
+import src.service.*;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Estoque estoque = new Estoque();
-        Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-            System.out.println("\n--- Menu de Gerenciamento de Estoque ---");
-            System.out.println("1. Adicionar Ingrediente");
-            System.out.println("2. Atualizar Quantidade");
-            System.out.println("3. Verificar Estoque Mínimo");
-            System.out.println("4. Exibir Status do Estoque");
-            System.out.println("5. Sair");
-            System.out.print("Escolha uma opção: ");
+        Scanner sc = new Scanner(System.in);
+        Pessoa funcionario = new Funcionario();
+        Pessoa cliente = new Cliente();
+        Transacao pedido = new Pedido();
+        Transacao venda = new Venda();
+        Produto produto = new Produto();
+        ItemPedido itemPedido = new ItemPedido();
+        Estoque estoque = new Estoque("coxinha", 30, 10);
+        Fidelidade fidelidade = new Fidelidade();
+        ClienteService cs = new ClienteService();
+        PedidoService ps = new PedidoService();
+        VendaService vs = new VendaService();
+        EstoqueService es = new EstoqueService();
+        FidelidadeService fs = new FidelidadeService();
 
-            int opcao = scanner.nextInt();
-            scanner.nextLine();
+        System.out.println("------------- Sistema de gereciamento de vendas -------------");
 
-            switch (opcao) {
+        int x,r;
+        do {
+            System.out.println("1 - Cadastrar Produto\n2 - Atualizar Estoque\n3 - Fazer Pedido\n4 - Consultar Pedidos\n5 - Finalizar Venda\n6 - Gerenciar Fidelidade\n7 - Relatório de Vendas");
+            x = sc.nextInt();
+
+            switch (x){
                 case 1:
-                    System.out.print("Nome do ingrediente: ");
-                    String nome = scanner.nextLine();
-                    System.out.print("Quantidade inicial: ");
-                    int quantidadeInicial = scanner.nextInt();
-                    System.out.print("Quantidade mínima: ");
-                    int quantidadeMinima = scanner.nextInt();
-                    scanner.nextLine();
-                    estoque.adicionarIngrediente(nome, quantidadeInicial, quantidadeMinima);
+                    //Cadastrar Produto
                     break;
-
                 case 2:
-                    System.out.print("Nome do ingrediente: ");
-                    String ingredienteParaAtualizar = scanner.nextLine();
-                    System.out.print("Nova quantidade: ");
-                    int novaQuantidade = scanner.nextInt();
-                    scanner.nextLine();
-                    estoque.atualizarQuantidade(ingredienteParaAtualizar, novaQuantidade);
+                    //Atualizar Estoque
                     break;
-
                 case 3:
-                    System.out.print("Nome do ingrediente: ");
-                    String ingredienteParaVerificar = scanner.nextLine();
-                    estoque.verificarEstoqueMinimo(ingredienteParaVerificar);
+                    System.out.println("Digite o nome do cliente:");
+                    ((Cliente)cliente).setNome(sc.next());
+                    System.out.println("Digite o telefone do cliente");
+                    ((Cliente)cliente).setNumeroTelefone(sc.nextLong());
+                    cs.cadastrarCliente((Cliente)cliente);
+                    System.out.println("Digite o nome do funcionário:");
+                    ((Funcionario)funcionario).setNome(sc.next());
+                    System.out.println(cs.listar());
                     break;
-
                 case 4:
-                    estoque.exibirStatusEstoque();
+                    //Consultar Pedidos
                     break;
-
                 case 5:
-                    System.out.println("Saindo...");
-                    scanner.close();
-                    return;
-
+                    //Finalizar Venda
+                    break;
+                case 6:
+                    //Gerenciar Fidelidade
+                    break;
+                case 7:
+                    //Relatório de Vendas
+                    break;
                 default:
-                    System.out.println("Opção inválida! Tente novamente.");
+                    System.out.println("Opção Inválida!");
             }
-        }
+            System.out.println("Para ver o menu novamente digite 0");
+            r = sc.nextInt();
+        }while (r==0);
     }
 }
