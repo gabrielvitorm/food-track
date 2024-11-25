@@ -9,8 +9,6 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        Pessoa funcionario = new Funcionario();
-        Pessoa cliente = new Cliente();
         Transacao pedido = new Pedido();
         Transacao venda = new Venda();
         Produto produto = new Produto();
@@ -27,17 +25,38 @@ public class Main {
 
         int x,r;
         do {
-            System.out.println("1 - Cadastrar Produto\n2 - Atualizar Estoque\n3 - Fazer Pedido\n4 - Consultar Pedidos\n5 - Finalizar Venda\n6 - Gerenciar Fidelidade\n7 - Relatório de Vendas");
+            System.out.println("1 - Menu de Produto\n2 - Atualizar Estoque\n3 - Fazer Pedido\n4 - Consultar Pedidos\n5 - Finalizar Venda\n6 - Gerenciar Fidelidade\n7 - Relatório de Vendas");
             x = sc.nextInt();
 
             switch (x){
                 case 1:
-                    //Cadastrar Produto
+                    int d,k;
+                    do {
+                        System.out.println("1 - Cadastrar produto\n2 - Atualizar produto\n3 - Ver estoque\n4 - Apagar produto\5 - Ver produtos acabando");
+                        d = sc.nextInt();
+                        switch (d){
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                            default:
+                                System.out.println("Opção inválida!");
+                        }
+                        System.out.println("Digite 0 para ver o menu novamente");
+                        k = sc.nextInt();
+                    }while (k == 0);
                     break;
                 case 2:
                     //Atualizar Estoque
                     break;
                 case 3:
+                    Pessoa funcionario = new Funcionario();
+                    Pessoa cliente = new Cliente();
+
                     System.out.println("Digite o nome do cliente:");
                     ((Cliente)cliente).setNome(sc.next());
                     System.out.println("Digite o telefone do cliente");
