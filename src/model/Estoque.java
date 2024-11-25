@@ -1,45 +1,31 @@
 package src.model;
 
-public final class Estoque {
+import java.util.HashMap;
+import java.util.Map;
 
-    private int qtdProduto, qtdMinima;
-    private String produto;
+public class Estoque {
 
-    public Estoque(String produto, int qtdProduto, int qtdMinima){
-        this.produto = produto;
-        this.qtdProduto = qtdProduto;
-        this.qtdMinima = qtdMinima;
+    private Map<String, Integer> estoqueAtual;
+    private Map<String, Integer> estoqueMinimo;
+
+    public Estoque() {
+        this.estoqueAtual = new HashMap<>();
+        this.estoqueMinimo = new HashMap<>();
     }
 
-    public int getQtdProduto() {
-        return qtdProduto;
+    public Map<String, Integer> getEstoqueAtual() {
+        return estoqueAtual;
     }
 
-    public void setQtdProduto(int qtdProduto) {
-        this.qtdProduto = qtdProduto;
+    public Map<String, Integer> getEstoqueMinimo() {
+        return estoqueMinimo;
     }
 
-    public int getQtdMinima() {
-        return qtdMinima;
+    public void setEstoqueAtual(String ingrediente, int quantidade) {
+        this.estoqueAtual.put(ingrediente, quantidade);
     }
 
-    public void setQtdMinima(int qtdMinima) {
-        this.qtdMinima = qtdMinima;
-    }
-
-    public String getProduto() {
-        return produto;
-    }
-
-    public void setProduto(String produto) {
-        this.produto = produto;
-    }
-
-    public void atualizarQuantidade(){
-        qtdProduto -= qtdProduto;
-    }
-
-    public void verificarEstoqueMinimo(){
-
+    public void setEstoqueMinimo(String ingrediente, int quantidadeMinima) {
+        this.estoqueMinimo.put(ingrediente, quantidadeMinima);
     }
 }
