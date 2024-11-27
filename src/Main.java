@@ -1,5 +1,4 @@
 package src;
-
 import src.model.*;
 import src.service.*;
 
@@ -32,7 +31,6 @@ public class Main {
                             case 1:
                                 Produto produto = new Produto();
                                 Estoque estoque = new Estoque();
-                                ItemPedido itemPedido = new ItemPedido();
                                 Transacao pedido = new Pedido();
                                 break;
                             case 2:
@@ -68,6 +66,9 @@ public class Main {
                                 System.out.println(cs.listar());
                                 break;
                             case 2:
+                                ItemPedido itemPedido = new ItemPedido();
+
+                                System.out.println(itemPedido);
                                 break;
                             case 3:
                                 break;

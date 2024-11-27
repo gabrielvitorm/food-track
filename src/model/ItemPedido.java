@@ -1,6 +1,6 @@
 package src.model;
 
-public class ItemPedido implements Calculavel {
+public class ItemPedido extends Pedido implements Calculavel {
 
         private Produto produto;
         private int quantidade;
@@ -35,7 +35,17 @@ public class ItemPedido implements Calculavel {
             calcularSubtotal();
         }
 
-        public double getSubtotal() {
+    @Override
+    public String toString() {
+        return "Pedidos: \n" +
+                "produto: " + produto +
+                ", quantidade: " + quantidade +
+                ", subtotal: " + subtotal +
+                ", Status do pedido: " + statusPedido +
+                '.';
+    }
+
+    public double getSubtotal() {
             return subtotal;
         }
 
