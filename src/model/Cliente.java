@@ -21,6 +21,10 @@ public final class Cliente extends Pessoa {
         return fidelidade;
     }
 
+    public String obterInformacoesFidelidade() {
+        return (fidelidade != null) ? fidelidade.toString() : "Nenhum programa de fidelidade";
+    }
+
     @Override
     public String toString() {
         return String.format(

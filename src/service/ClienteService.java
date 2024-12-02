@@ -3,6 +3,7 @@ package src.service;
 import src.model.Cliente;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Optional;
 
 public class ClienteService {
     private ArrayList<Cliente> clientes = new ArrayList<>();
@@ -17,18 +18,20 @@ public class ClienteService {
     }
 
     public void atualizar(String nome, String novoNome) {
-        boolean encontrado = false;
-        for (Cliente cliente : clientes) {
-            if (cliente.getNome().equalsIgnoreCase(nome)) {
-                cliente.setNome(novoNome);
-                System.out.println("Atualizado com sucesso!");
-                encontrado = true;
-                break; // Sai do loop após encontrar e atualizar
-            }
+        Optional<Cliente> clienteOpt = clientes.stream()
+                .filter(cliente -> cliente.getNome().equalsIgnoreCase(nome))
+                .findFirst();
+
+        if (clienteOpt.isPresent()) {
+            clienteOpt.get().setNome(novoNome);
+            mostrarMensagem("Atualizado com sucesso!");
+        } else {
+            mostrarMensagem("Pessoa não foi encontrada.");
         }
-        if (!encontrado) {
-            System.out.println("Pessoa não foi encontrada.");
-        }
+    }
+
+    private void mostrarMensagem(String mensagem) {
+        System.out.println(mensagem);
     }
 
     public void deletar(String nome) {

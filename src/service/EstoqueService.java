@@ -10,6 +10,10 @@ public class EstoqueService {
         this.estoque = estoque;
     }
 
+    public EstoqueService(Estoque estoque) {
+        this.estoque = estoque != null ? estoque : new Estoque();
+    }
+
     public void adicionarIngrediente(String ingrediente, int quantidadeInicial, int quantidadeMinima) {
         estoque.setEstoqueAtual(ingrediente, quantidadeInicial);
         estoque.setEstoqueMinimo(ingrediente, quantidadeMinima);

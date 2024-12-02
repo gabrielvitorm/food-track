@@ -16,6 +16,10 @@ public class VendaService {
     }
 
     public void criarVenda(int id, LocalDate data, Pedido pedido) {
+        if (pedido == null || pedido.getItens().isEmpty()) {
+            System.out.println("Não é possível criar venda sem itens no pedido.");
+            return;
+        }
         Venda venda = new Venda(id, data, pedido);
         vendas.add(venda);
         System.out.println("Venda criada com sucesso!");

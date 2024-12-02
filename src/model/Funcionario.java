@@ -6,19 +6,17 @@ public final class Funcionario extends Pessoa {
 
     private Cargo cargo;
 
-    public Funcionario(int id, String nome, long numeroTelefone, Cargo cargo) {
-        super(id, nome, numeroTelefone);
+    public Funcionario(String nome, long numeroTelefone, Cargo cargo) {
+        super(nome, numeroTelefone);
         this.cargo = cargo;
-    }
-
-    public Funcionario(){}
-
-    public Cargo getCargo() {
-        return cargo;
     }
 
     public void setCargo(Cargo cargo) {
         this.cargo = cargo;
+    }
+
+    public Cargo getCargo() {
+        return cargo;
     }
 
     @Override

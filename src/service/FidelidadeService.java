@@ -46,17 +46,21 @@ public class FidelidadeService {
     public static void main(String[] args) {
         FidelidadeService fidelidadeService = new FidelidadeService();
 
-        // Adicionando clientes ao programa de fidelidade
         fidelidadeService.adicionarFidelidade(new Fidelidade(1));
         fidelidadeService.adicionarFidelidade(new Fidelidade(2));
 
-        // Simulando compras e verificando recompensas
         for (int i = 0; i < 15; i++) {
             fidelidadeService.incrementarContador(1);
             fidelidadeService.checarRecompensa(1);
         }
 
-        // Listando todos os programas de fidelidade
         fidelidadeService.listarFidelidades();
+    }
+
+    private Fidelidade buscarFidelidadePorId(int clienteId) {
+        return fidelidades.stream()
+                .filter(f -> f.getClienteId() == clienteId)
+                .findFirst()
+                .orElse(null);
     }
 }

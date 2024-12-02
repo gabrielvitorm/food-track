@@ -43,8 +43,9 @@ public class Pedido extends Transacao implements Calculavel, ProcessoCozinha {
     public void calcularValorTotal() {
         BigDecimal valorTotal = BigDecimal.ZERO;
         for (ItemPedido item : itens) {
-            valorTotal = valorTotal.add(item.calcularTotal());
+            valorTotal = valorTotal.add(item.calcularValor());
         }
+        this.valorTotal = valorTotal;
     }
 
     @Override
@@ -76,7 +77,7 @@ public class Pedido extends Transacao implements Calculavel, ProcessoCozinha {
     }
 
     @Override
-    public BigDecimal calcularTotal() {
+    public void calcularTotal() {
         return null;
     }
 }
