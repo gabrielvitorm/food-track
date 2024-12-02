@@ -1,6 +1,5 @@
 package src.enums;
 
 public enum Cargo {
-    Atendente, Cozinheiro, Caixa, Limpeza;
+    ATENDENTE, COZINHEIRO, CAIXA, LIMPEZA;
 }
-

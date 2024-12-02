@@ -1,33 +1,48 @@
 package src.model;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * Classe abstrata que representa uma transação.
+ */
 public abstract class Transacao {
 
-    public abstract class transacao {
-        private int id;
-        private LocalDate data;
-        protected double valorTotal;
+    private final int id; // ID da transação, imutável após a criação
+    private final LocalDate data; // Data da transação, imutável após a criação
+    protected BigDecimal valorTotal; // Valor total da transação
 
-        // Construtor
-        public transacao(int id, LocalDate data) {
-            this.id = id;
-            this.data = data;
-            this.valorTotal = 0.0;
-        }
+    public Transacao(int id, LocalDate data) {
+        this.id = id;
+        this.data = data;
+        this.valorTotal = BigDecimal.ZERO; // Inicializa o valor total como zero
+    }
 
-        public int getId() {
-            return id;
-        }
+    public int getId() {
+        return id;
+    }
 
-        public LocalDate getData() {
-            return data;
-        }
+    public LocalDate getData() {
+        return data;
+    }
 
-        public double getValorTotal() {
-            return valorTotal;
-        }
-        public void calcularvalortotal() {
-            System.out.println("O valor total atual na transação é: " + valorTotal);
-        }
+    public BigDecimal getValorTotal() {
+        return valorTotal;
+    }
+
+    public abstract void calcularValorTotal();
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Transacao {\n" +
+                        "  ID: %d\n" +
+                        "  Data: %s\n" +
+                        "  Valor Total: %s\n" +
+                        "}",
+                id,
+                data,
+                valorTotal
+        );
     }
 }

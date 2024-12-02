@@ -1,19 +1,21 @@
 package src.model;
 
+import java.math.BigDecimal;
+
 public class ItemPedido extends Pedido implements Calculavel {
 
         private Produto produto;
         private int quantidade;
-        private double subtotal;
+        private BigDecimal subtotal;
 
-        public double calcularValor() {
+        public BigDecimal calcularValor() {
             calcularSubtotal();
             return subtotal;
         }
 
         private void calcularSubtotal() {
             if (produto != null) {
-                this.subtotal = produto.getPreco() * quantidade;
+                this.subtotal = BigDecimal.valueOf((long) produto.getPreco() * quantidade);
             }
         }
 
@@ -37,20 +39,19 @@ public class ItemPedido extends Pedido implements Calculavel {
 
     @Override
     public String toString() {
-        return "Pedidos: \n" +
-                "produto: " + produto +
-                ", quantidade: " + quantidade +
-                ", subtotal: " + subtotal +
-                ", Status do pedido: " + statusPedido +
-                '.';
+        return String.format(
+                "ItemPedido {\n" +
+                        "  Produto: %s\n" +
+                        "  Quantidade: %d\n" +
+                        "  Subtotal: %s\n" +
+                        "}",
+                produto != null ? produto.getNome() : "Nenhum produto",
+                quantidade,
+                subtotal
+        );
     }
 
-    public double getSubtotal() {
+    public BigDecimal getSubtotal() {
             return subtotal;
         }
-
-    @Override
-    public void calcularValorPedido() {
-
-    }
 }

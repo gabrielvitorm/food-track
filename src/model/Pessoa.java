@@ -3,7 +3,7 @@ package src.model;
 public abstract class Pessoa {
 
     protected String nome;
-    protected int id;
+    protected final int id;
     protected long numeroTelefone;
 
     public Pessoa(int id, String nome, long numeroTelefone) {
@@ -11,8 +11,6 @@ public abstract class Pessoa {
         this.nome = nome;
         this.numeroTelefone = numeroTelefone;
     }
-
-    public Pessoa(){}
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -30,20 +28,21 @@ public abstract class Pessoa {
         return numeroTelefone;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return id;
     }
 
     @Override
     public String toString() {
-        return "Pessoa{" +
-                "nome='" + nome + '\'' +
-                ", id=" + id +
-                ", numeroTelefone=" + numeroTelefone +
-                '}';
+        return String.format(
+                "Pessoa {\n" +
+                        "  Nome: %s\n" +
+                        "  ID: %d\n" +
+                        "  Número de Telefone: %d\n" +
+                        "}",
+                nome,
+                id,
+                numeroTelefone
+        );
     }
 }
