@@ -12,6 +12,14 @@ public abstract class Pessoa {
         this.numeroTelefone = numeroTelefone;
     }
 
+    public Pessoa(String nome, long numeroTelefone, int id) {
+        this.id = id;
+    }
+
+    public Pessoa() {
+        id = 0;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }

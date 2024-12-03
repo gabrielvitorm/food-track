@@ -49,4 +49,34 @@ public class PedidoService {
             System.out.println(pedido);
         }
     }
+
+    public void criarPedido(Pedido pedido) {
+        
+    }
+
+    public Pedido buscarPedidoPorId(int idAlterarPedido) {
+        for (Pedido pedido : pedidos) {
+            if (pedido.getId() == idAlterarPedido) {
+                return pedido;
+            }
+        }
+        return null;
+    }
+
+    public void deletarPedido(int idDeletarPedido) {
+        boolean encontrado = false;
+
+        for (int i = 0; i < pedidos.size(); i++) {
+            if (pedidos.get(i).getId() == idDeletarPedido) {
+                pedidos.remove(i);
+                System.out.println("Pedido com ID " + idDeletarPedido + " deletado com sucesso!");
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("Pedido com ID " + idDeletarPedido + " não encontrado.");
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package src;
 
+import src.enums.StatusPedido;
 import src.model.*;
 import src.service.*;
 
@@ -44,21 +45,22 @@ public class Main {
 
                         switch (subMenuProduto) {
                             case 1:
-                                System.out.println("Digite o nome do produto: ");
-                                String nomeProduto = sc.next();
-                                System.out.println("Digite o preço do produto: ");
-                                BigDecimal precoProduto = sc.nextBigDecimal();
-                                System.out.println("Digite a quantidade inicial: ");
-                                int quantidadeInicial = sc.nextInt();
-                                System.out.println("Digite a quantidade mínima: ");
-                                int quantidadeMinima = sc.nextInt();
-                                Produto produto = new Produto(1, nomeProduto, precoProduto); // ID fixo para exemplo
-                                estoqueService.adicionarIngrediente(nomeProduto, quantidadeInicial, quantidadeMinima);
+                                Produto produto = new Produto(1);
+                                Estoque estoque = new Estoque();
+                                System.out.print("Digite o nome do produto: ");
+                                produto.setNome(sc.next());
+                                System.out.print("Digite o preço do produto: ");
+                                produto.setPreco(sc.nextBigDecimal());
+                                System.out.print("Digite a quantidade inicial: ");
+                                estoque.setEstoqueAtual(sc.nextInt());  // Define a quantidade atual
+                                System.out.print("Digite a quantidade mínima: ");
+                                estoque.setEstoqueMinimo(sc.nextInt()); // Define a quantidade mínima
+                                estoqueService.adicionarIngrediente(produto.getNome(), estoque.getEstoqueAtual(), estoque.getEstoqueMinimo());
                                 break;
                             case 2:
-                                System.out.println("Digite o nome do produto a ser atualizado: ");
+                                System.out.print("Digite o nome do produto a ser atualizado: ");
                                 String produtoAtualizar = sc.next();
-                                System.out.println("Digite o novo preço do produto: ");
+                                System.out.print("Digite o novo preço do produto: ");
                                 BigDecimal novoPreco = sc.nextBigDecimal();
                                 estoqueService.atualizarQuantidade(produtoAtualizar, novoPreco.intValue());
                                 break;
@@ -66,12 +68,12 @@ public class Main {
                                 estoqueService.exibirStatusEstoque();
                                 break;
                             case 4:
-                                System.out.println("Digite o nome do produto a ser apagado: ");
+                                System.out.print("Digite o nome do produto a ser apagado: ");
                                 String produtoApagar = sc.next();
-                                estoqueService.removerIngrediente(produtoApagar);
+                                estoqueService.deletar(produtoApagar);
                                 break;
                             case 5:
-                                estoqueService.verificarProdutosAcabando();
+                                estoqueService.verificarEstoqueMinimo();
                                 break;
                             case 0:
                                 System.out.println("Voltando ao menu principal...");
@@ -97,17 +99,17 @@ public class Main {
                         switch (subMenuPedido) {
                             case 1:
                                 Cliente clientePedido = new Cliente();
-                                System.out.println("Digite o nome do cliente: ");
+                                System.out.print("Digite o nome do cliente: ");
                                 clientePedido.setNome(sc.next());
-                                System.out.println("Digite o telefone do cliente: ");
-                                clientePedido.setTelefone(sc.nextLong());
+                                System.out.print("Digite o telefone do cliente: ");
+                                clientePedido.setNumeroTelefone(sc.nextLong());
                                 clienteService.cadastrarCliente(clientePedido);
 
                                 Funcionario funcionarioPedido = new Funcionario();
-                                System.out.println("Digite o nome do funcionário: ");
+                                System.out.print("Digite o nome do funcionário: ");
                                 funcionarioPedido.setNome(sc.next());
 
-                                System.out.println("Digite o ID do pedido: ");
+                                System.out.print("Digite o ID do pedido: ");
                                 int pedidoId = sc.nextInt();
                                 Pedido pedido = new Pedido(pedidoId, LocalDate.now());
                                 pedido.setCliente(clientePedido);
@@ -118,25 +120,25 @@ public class Main {
                                 pedidoService.listarPedidos();
                                 break;
                             case 3:
-                                System.out.println("Digite o ID do pedido para finalizar: ");
+                                System.out.print("Digite o ID do pedido para finalizar: ");
                                 int idFinalizarPedido = sc.nextInt();
                                 pedidoService.atualizarStatusPedido(idFinalizarPedido, StatusPedido.ENTREGUE);
                                 break;
                             case 4:
-                                System.out.println("Digite o ID do pedido para alterar: ");
+                                System.out.print("Digite o ID do pedido para alterar: ");
                                 int idAlterarPedido = sc.nextInt();
                                 Pedido pedidoAlterado = pedidoService.buscarPedidoPorId(idAlterarPedido);
                                 if (pedidoAlterado != null) {
-                                    System.out.println("Digite o novo status do pedido: ");
+                                    System.out.print("Digite o novo status do pedido: ");
                                     String novoStatus = sc.next();
                                     pedidoAlterado.setStatusPedido(StatusPedido.valueOf(novoStatus));
-                                    pedidoService.atualizarStatusPedido(idAlterarPedido, pedidoAlterado);
+                                    pedidoService.atualizarStatusPedido(idAlterarPedido, pedidoAlterado.getStatusPedido());
                                 } else {
                                     System.out.println("Pedido não encontrado!");
                                 }
                                 break;
                             case 5:
-                                System.out.println("Digite o ID do pedido para deletar: ");
+                                System.out.print("Digite o ID do pedido para deletar: ");
                                 int idDeletarPedido = sc.nextInt();
                                 pedidoService.deletarPedido(idDeletarPedido);
                                 break;
@@ -160,14 +162,14 @@ public class Main {
 
                         switch (subMenuVenda) {
                             case 1:
-                                System.out.println("Digite o ID da venda: ");
+                                System.out.print("Digite o ID da venda: ");
                                 int vendaId = sc.nextInt();
-                                System.out.println("Digite o ID do pedido associado: ");
+                                System.out.print("Digite o ID do pedido associado: ");
                                 int idPedidoVenda = sc.nextInt();
                                 Pedido pedidoVenda = pedidoService.buscarPedidoPorId(idPedidoVenda);
                                 if (pedidoVenda != null) {
                                     Venda venda = new Venda(vendaId, LocalDate.now(), pedidoVenda);
-                                    vendaService.criarVenda(venda);
+                                    vendaService.criarVenda();
                                     System.out.println("Venda criada com sucesso!");
                                 } else {
                                     System.out.println("Pedido não encontrado!");
@@ -197,19 +199,19 @@ public class Main {
 
                         switch (subMenuFidelidade) {
                             case 1:
-                                System.out.println("Digite o ID do cliente para fidelidade: ");
+                                System.out.print("Digite o ID do cliente para fidelidade: ");
                                 int clienteId = sc.nextInt();
                                 Fidelidade fidelidade = new Fidelidade(clienteId);
                                 fidelidadeService.adicionarFidelidade(fidelidade);
                                 System.out.println("Fidelidade adicionada com sucesso!");
                                 break;
                             case 2:
-                                System.out.println("Digite o ID do cliente para incrementar o contador de fidelidade: ");
+                                System.out.print("Digite o ID do cliente para incrementar o contador de fidelidade: ");
                                 int idIncrementarFidelidade = sc.nextInt();
                                 fidelidadeService.incrementarContador(idIncrementarFidelidade);
                                 break;
                             case 3:
-                                System.out.println("Digite o ID do cliente para verificar a recompensa: ");
+                                System.out.print("Digite o ID do cliente para verificar a recompensa: ");
                                 int idVerificarFidelidade = sc.nextInt();
                                 fidelidadeService.checarRecompensa(idVerificarFidelidade);
                                 break;

@@ -10,6 +10,10 @@ public final class Cliente extends Pessoa {
         this.fidelidade = fidelidade;
     }
 
+    public Cliente() {
+
+    }
+
     public void acessarProgramaFidelidade() {
         if (fidelidade != null) {
             fidelidade.incrementarContador();

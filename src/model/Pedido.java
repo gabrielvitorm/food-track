@@ -6,13 +6,32 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Classe que representa um pedido.
- */
 public class Pedido extends Transacao implements Calculavel, ProcessoCozinha {
 
     private List<ItemPedido> itens;
     private StatusPedido statusPedido;
+    private Cliente cliente;
+    private Funcionario funcionario;
+
+    public void setItens(List<ItemPedido> itens) {
+        this.itens = itens;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
 
     public Pedido(int id, LocalDate data) {
         super(id, data);
@@ -20,15 +39,13 @@ public class Pedido extends Transacao implements Calculavel, ProcessoCozinha {
         this.statusPedido = StatusPedido.A_FAZER;
     }
 
-    public Pedido(){}
-
     public List<ItemPedido> getItens() {
         return itens;
     }
 
     public void adicionarItem(ItemPedido item) {
         itens.add(item);
-        calcularValorTotal(); // Recalcula o valor total ao adicionar um item
+        calcularValorTotal();
     }
 
     public StatusPedido getStatusPedido() {
@@ -77,7 +94,7 @@ public class Pedido extends Transacao implements Calculavel, ProcessoCozinha {
     }
 
     @Override
-    public void calcularTotal() {
+    public BigDecimal calcularTotal() {
         return null;
     }
 }

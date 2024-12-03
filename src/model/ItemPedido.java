@@ -9,13 +9,27 @@ public class ItemPedido extends Pedido implements Calculavel {
     private int quantidade;
     private BigDecimal subtotal;
 
+    public ItemPedido(int id, LocalDate data) {
+        super(id, data);
+    }
+
     public BigDecimal calcularValor() {
         calcularSubtotal();
         return subtotal;
     }
-    private void calcularSubtotal() {
+    public void calcularSubtotal() {
         if (produto != null) {
-            this.subtotal = BigDecimal.valueOf((long) produto.getPreco() * quantidade);
+            BigDecimal preco;
+
+            if (produto.getPreco() instanceof BigDecimal) {
+                preco = (BigDecimal) produto.getPreco();
+            } else {
+                preco = (BigDecimal) produto.getPreco();
+            }
+
+            BigDecimal quantidadeBigDecimal = BigDecimal.valueOf(quantidade);
+
+            this.subtotal = preco.multiply(quantidadeBigDecimal);
         }
     }
     public Produto getProduto() {

@@ -10,14 +10,12 @@ public abstract class Transacao implements Calculavel {
     private LocalDate data;
     protected BigDecimal valorTotal;
 
-    // Construtor
     public Transacao(int id, LocalDate data) {
         this.id = id;
         this.data = data;
-        this.valorTotal = BigDecimal.valueOf(0.0); // Inicializado como 0, calculado posteriormente.
+        this.valorTotal = BigDecimal.valueOf(0.0);
     }
 
-    // Getters e Setters
     public int getId() {
         return id;
     }
@@ -30,7 +28,6 @@ public abstract class Transacao implements Calculavel {
         return valorTotal;
     }
 
-    // Método abstrato
     public abstract void calcularValorTotal();
 
 }

@@ -7,8 +7,12 @@ public final class Funcionario extends Pessoa {
     private Cargo cargo;
 
     public Funcionario(String nome, long numeroTelefone, Cargo cargo) {
-        super(nome, numeroTelefone);
+        super();
         this.cargo = cargo;
+    }
+
+    public Funcionario() {
+
     }
 
     public void setCargo(Cargo cargo) {

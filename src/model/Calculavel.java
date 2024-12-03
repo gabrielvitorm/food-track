@@ -1,6 +1,8 @@
 package src.model;
 
+import java.math.BigDecimal;
+
 public interface Calculavel {
 
-    void calcularTotal();
+    BigDecimal calcularTotal();
 }
